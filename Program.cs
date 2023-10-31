@@ -11,7 +11,7 @@ static class Program
     {
         Color = SKColors.Black,
         IsAntialias = true,
-        TextSize = 30
+        TextSize = 30,
     };
 
     private static SKRect CubeRect = new(100, 100, 200, 200);
