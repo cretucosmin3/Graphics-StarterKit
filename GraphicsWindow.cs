@@ -26,7 +26,6 @@ public class GraphicsWindow
     private readonly int windowWidth;
     private readonly int windowHeight;
 
-    public int RenderWaitTicks = 1;
     public IInputContext Input => _Input;
     public Action<SKCanvas> OnFrame;
     public Action OnLoaded;
@@ -51,6 +50,7 @@ public class GraphicsWindow
         options.VSync = true;
         options.TransparentFramebuffer = false;
         options.WindowBorder = WindowBorder.Fixed;
+        options.FramesPerSecond = 60;
 
         GlfwWindowing.Use();
 
@@ -67,8 +67,8 @@ public class GraphicsWindow
         _Input = window.CreateInput();
 
         window.Center();
-        SetCanvas(window);
         OnLoaded?.Invoke();
+        SetCanvas(window);
     }
 
     private void Render(double time)
@@ -79,9 +79,6 @@ public class GraphicsWindow
         OnFrame.Invoke(Canvas);
 
         Canvas.Flush();
-
-        if (RenderWaitTicks > 0)
-            Thread.Sleep(RenderWaitTicks);
     }
 
     private void RenewCanvas(int width, int height)

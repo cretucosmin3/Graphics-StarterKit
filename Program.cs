@@ -23,7 +23,6 @@ static class Program
         Window = new GraphicsWindow("Hello Graphics", 1000, 800);
         Window.OnFrame += OnFrame;
         Window.OnLoaded += OnWindowLoaded;
-        Window.RenderWaitTicks = 10;
 
         Window.Start();
     }
